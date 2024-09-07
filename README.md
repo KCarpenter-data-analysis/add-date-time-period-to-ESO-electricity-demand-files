@@ -22,3 +22,8 @@ Several of the functions calculating the last Sundays in March and October were 
 
 •	Investigate outputting the DataFrame as a parquet file rather than as a CSV file in order for the datatypes particularly datetime objects to be preserved. 
 
+*Licensing*
+
+This work is licensed under a
+[CC BY-SA 4.0 license]( https://creativecommons.org/licenses/by-sa/4.0/).
+

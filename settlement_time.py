@@ -4,6 +4,8 @@ import datetime
 from dateutil.rrule import rrule, WEEKLY
 from dateutil.rrule import SU as Sunday
 import calendar
+import pyarrow as pa
+import pyarrow.parquet as pq
 
 
 
@@ -64,7 +66,7 @@ def long_short_day(df, short_day, long_day):
 def add_datetime_periodindex(file_path):
    """Reads a csv file using the file_path into a df called demand_df. Adds a column with a periodindex object
    corresponding to the date and settlement period and a column called period_start with the start date and time
-   of each settlement period as a datetime object with UK timezone info. Returns altered df."""
+   of each settlement period as a datetime object with UK timezone info. Returns altered df.pip install pyarrow"""
    demand_df = pd.read_csv(file_path)
    demand_df['SETTLEMENT_DATE'] = pd.to_datetime(demand_df['SETTLEMENT_DATE'], format = 'mixed')
    day = demand_df.iloc[1,0] #Get first day of the year from df
@@ -79,6 +81,7 @@ data_file = 'demand_data_2023.csv'
 
 elec_df = add_datetime_periodindex(data_file)
 
-save_filepath = 'elec_demand.csv'
+save_filepath = 'elec_demand_2023.parquet'
 
-elec_df.to_csv(save_filepath, index=False) 
+elec_df.to_parquet(save_filepath, engine="pyarrow")
+

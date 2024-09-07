@@ -14,7 +14,7 @@ Python in Visual Studio Code
 
 *Attribution:* 
 
-Several of the functions calculating the last Sundays in March and October were very slightly adapted from a [StackOverflow answer](https://stackoverflow.com/questions/54531558/how-do-i-know-if-today-is-a-day-due-to-change-civil-local-time-e-g-daylight-sav) by [Arount](https://stackoverflow.com/users/7200715/arount). These are available under the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license and can be shared and reused providing attribution is given and the resulting contributions are shared under the same license. 
+Several of the functions calculating the last Sundays in March and October were very slightly adapted from a [Stack Overflow answer](https://stackoverflow.com/questions/54531558/how-do-i-know-if-today-is-a-day-due-to-change-civil-local-time-e-g-daylight-sav) by [Arount](https://stackoverflow.com/users/7200715/arount). These are available under the [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license and can be shared and reused providing attribution is given and the resulting contributions are shared under the same license. 
 
 *Next steps:*
 

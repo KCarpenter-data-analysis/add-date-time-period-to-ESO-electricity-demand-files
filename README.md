@@ -2,7 +2,7 @@
 
 *OVERVIEW*
 
-A script which takes yearly historic demand electricity data CSV files as published on the National Grid ESO Data Portal and adds time and date data. The script converts the files into dataframes and adds a column with datetime data indicating the start of the settlement period and including time zones, and a column with PeriodIndex data corresponding to the relevant settlement dates and settlement periods. It then saves the altered dataframe as a CSV file.
+A script which takes yearly historic demand electricity data CSV files as published on the National Grid ESO Data Portal and adds time and date data. The script converts the files into dataframes and adds a column with datetime data indicating the start of the settlement period and including time zones, and a column with PeriodIndex data corresponding to the relevant settlement dates and settlement periods. It then saves the altered dataframe as a parquet file to preserve datetime and period information.
 
 *Programs Used:*
 
@@ -20,7 +20,6 @@ Several of the functions calculating the last Sundays in March and October were 
 
 •	Look to automate process within GitHub when new data files are added along the lines of this article [Automating Data Pipelines with Python & GitHub Actions](https://towardsdatascience.com/automating-data-pipelines-with-python-github-actions-c19e2ef9ca90).
 
-•	Investigate outputting the DataFrame as a parquet file rather than as a CSV file in order for the datatypes particularly datetime objects to be preserved. 
 
 *Licensing*
 

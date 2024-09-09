@@ -11,13 +11,12 @@ import pyarrow.parquet as pq
 
 def leap_year(df, date):
     """Given df and date creates col with start time of settlment period and time zone info
-    and col with periodindex of settlement periods."""
+    and col with periodindex of settlement periods. number of rows differ if a leap year."""
+    yearly_half_hours = 17520
     if calendar.isleap(date.year):
-        df['period_start'] = pd.date_range(start=date, periods=17568, freq='30min', tz='Europe/London')
-        df['period'] = pd.period_range(date, periods=17568, freq='30min')
-    else:
-        df['period_start'] = pd.date_range(start=date, periods=17520, freq='30min', tz='Europe/London')
-        df['period'] = pd.period_range(date, periods=17520, freq='30min')
+        yearly_half_hours = 17568
+    df['period_start'] = pd.date_range(start=date, periods=yearly_half_hours, freq='30min', tz='Europe/London')
+    df['period'] = pd.period_range(date, periods=yearly_half_hours, freq='30min')
     return df
 
 
@@ -52,10 +51,9 @@ def get_october_switch(year):  # function slightly adapted from stack overflow a
 def long_short_day(df, short_day, long_day):
     """"Given a df, string of the day clocks go forwards and string of day clock goes back
      amends 'period' column in df to reflect time with clocks changing."""
-    short_day_str = short_day.strftime('%d-%b-%Y').upper()
-    long_day_str = long_day.strftime('%d-%b-%Y').upper()
     short_day_idx = df.index[(df['SETTLEMENT_DATE'] == short_day) & (df['SETTLEMENT_PERIOD'] == 3)].tolist()
     long_day_idx = df.index[(df['SETTLEMENT_DATE'] == long_day) & (df['SETTLEMENT_PERIOD'] == 5)].tolist()
+    
     df.loc[short_day_idx[0]:(long_day_idx[0] +1), 'period'] = df.loc[short_day_idx[0]:(long_day_idx[0] +1), 'period'].shift(periods=-2,axis=0)
     df.loc[long_day_idx[0], 'period'] = df.loc[(long_day_idx[0]-2), 'period']
     df.loc[long_day_idx[0] + 1, 'period'] = df.loc[(long_day_idx[0]-1), 'period']
